@@ -1,0 +1,54 @@
+[gd_scene load_steps=4 format=3 uid="uid://cj3c82ndjawsm"]
+
+[ext_resource type="Script" path="res://done.gd" id="1_81cjv"]
+[ext_resource type="FontFile" uid="uid://it6qvnk16ess" path="res://MinecraftRegular-Bmg3.otf" id="1_evqgv"]
+[ext_resource type="AudioStream" uid="uid://dggcx5ig3axu3" path="res://whengamedone.mp3" id="3_fvuak"]
+
+[node name="done" type="Node2D"]
+script = ExtResource("1_81cjv")
+
+[node name="Panel" type="Panel" parent="."]
+offset_right = 1153.0
+offset_bottom = 648.0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+offset_left = 213.0
+offset_top = 146.0
+offset_right = 955.0
+offset_bottom = 208.0
+theme_override_fonts/font = ExtResource("1_evqgv")
+theme_override_font_sizes/font_size = 61
+text = "You've beaten the game!"
+
+[node name="Label2" type="Label" parent="CanvasLayer"]
+offset_left = 280.0
+offset_top = 269.0
+offset_right = 843.0
+offset_bottom = 296.0
+theme_override_colors/font_color = Color(0.505882, 0.505882, 0.505882, 1)
+theme_override_fonts/font = ExtResource("1_evqgv")
+theme_override_font_sizes/font_size = 26
+text = "\"It'll never be known what just happened\""
+
+[node name="Button" type="Button" parent="."]
+texture_filter = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 502.0
+offset_top = 433.0
+offset_right = 629.0
+offset_bottom = 493.0
+grow_horizontal = 2
+size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("1_evqgv")
+theme_override_font_sizes/font_size = 51
+text = "Back"
+
+[node name="outro" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_fvuak")
+volume_db = -9.369
+autoplay = true
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

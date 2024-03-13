@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://r37dertojc0c"]
+
+[ext_resource type="VideoStream" path="res://scene2.ogv" id="1_kxan3"]
+[ext_resource type="Script" path="res://scene_2.gd" id="1_t8int"]
+
+[node name="scene2" type="Node2D"]
+script = ExtResource("1_t8int")
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stream = ExtResource("1_kxan3")
+autoplay = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.6, 0.6)
+
+[connection signal="finished" from="VideoStreamPlayer" to="." method="_on_video_stream_player_finished"]

@@ -1,0 +1,107 @@
+[gd_scene load_steps=16 format=3 uid="uid://beasf2ch5lu8y"]
+
+[ext_resource type="Texture2D" uid="uid://dh1gwf75udrll" path="res://laser.png" id="1_s734y"]
+[ext_resource type="Script" path="res://laser.gd" id="1_w1rj7"]
+[ext_resource type="AudioStream" uid="uid://dgohe52o3b22l" path="res://laser.mp3" id="3_bkjg3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pgd5i"]
+atlas = ExtResource("1_s734y")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k6v36"]
+atlas = ExtResource("1_s734y")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e1rca"]
+atlas = ExtResource("1_s734y")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mm1ro"]
+atlas = ExtResource("1_s734y")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qe8rl"]
+atlas = ExtResource("1_s734y")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8k3m1"]
+atlas = ExtResource("1_s734y")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qkmuf"]
+atlas = ExtResource("1_s734y")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v0ngd"]
+atlas = ExtResource("1_s734y")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8fw4q"]
+atlas = ExtResource("1_s734y")
+region = Rect2(256, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_phwjx"]
+atlas = ExtResource("1_s734y")
+region = Rect2(288, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_38g43"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pgd5i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k6v36")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e1rca")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mm1ro")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qe8rl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8k3m1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qkmuf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v0ngd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8fw4q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_phwjx")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_liop6"]
+size = Vector2(7, 32)
+
+[node name="Laser" type="Node2D"]
+script = ExtResource("1_w1rj7")
+
+[node name="PlayerDeath" type="Area2D" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="PlayerDeath"]
+sprite_frames = SubResource("SpriteFrames_38g43")
+autoplay = "default"
+frame = 8
+frame_progress = 0.737379
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDeath"]
+position = Vector2(1.5, 0)
+shape = SubResource("RectangleShape2D_liop6")
+
+[node name="laser" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_bkjg3")
+volume_db = -8.432
+
+[connection signal="body_entered" from="PlayerDeath" to="." method="_on_player_death_body_entered"]

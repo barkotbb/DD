@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=3 uid="uid://bcjuv7di5mwd6"]
+
+[ext_resource type="Texture2D" uid="uid://iy2muyvw8qoq" path="res://door.png" id="1_pnc4j"]
+[ext_resource type="Script" path="res://door_closed.gd" id="1_s4whl"]
+[ext_resource type="FontFile" uid="uid://it6qvnk16ess" path="res://MinecraftRegular-Bmg3.otf" id="3_n2pqg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5a4sd"]
+size = Vector2(58, 88)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w7w0d"]
+size = Vector2(83, 93)
+
+[node name="DoorClosed" type="CharacterBody2D"]
+script = ExtResource("1_s4whl")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_5a4sd")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(2.655, 2.655)
+texture = ExtResource("1_pnc4j")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-12.5, -2.5)
+shape = SubResource("RectangleShape2D_w7w0d")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+visible = false
+offset_left = 900.0
+offset_top = 21.0
+offset_right = 989.0
+offset_bottom = 53.0
+theme_override_fonts/font = ExtResource("3_n2pqg")
+theme_override_font_sizes/font_size = 31
+text = "{err}"
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
